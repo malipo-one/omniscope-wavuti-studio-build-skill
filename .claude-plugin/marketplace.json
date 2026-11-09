@@ -1,15 +1,15 @@
 {
-  "name": "webfactory-build-skill",
+  "name": "wavuti-studio-build-skill",
   "owner": {
     "name": "Bridging Technologies Limited",
     "email": "digital@bridging.co.tz"
   },
   "plugins": [
     {
-      "name": "webfactory-build",
-      "source": "./skills/webfactory-build",
-      "description": "Author an OmniScope Web Factory website as plain HTML/CSS in Claude Code instead of the drag-and-drop canvas.",
-      "version": "1.0.0"
+      "name": "wavuti-studio-build",
+      "source": "./skills/wavuti-studio-build",
+      "description": "Author a Wavuti Studio (formerly Web Factory) website for OmniScope as plain HTML/CSS in Claude Code instead of the drag-and-drop canvas.",
+      "version": "1.1.0"
     }
   ]
 }

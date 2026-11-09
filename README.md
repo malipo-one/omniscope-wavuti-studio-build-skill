@@ -1,12 +1,16 @@
-# webfactory-build (Claude Code plugin marketplace)
+# wavuti-studio-build (Claude Code plugin marketplace)
 
-Public, self-serve distribution for the `webfactory-build` Claude Code
-skill — lets any developer author a [OmniScope Web Factory](https://omniscope.co.tz/websites)
+> **Wavuti Studio** is the new name of **Web Factory**. The skill was renamed from `webfactory-build`;
+> reinstall with the commands in Step 1A. The OmniScope app's own screens may still say "Web Factory" until
+> they are renamed — it is the same feature. (The repository keeps its old name for now.)
+
+Public, self-serve distribution for the `wavuti-studio-build` Claude Code
+skill — lets any developer author a [OmniScope Wavuti Studio](https://omniscope.co.tz/websites)
 website as plain HTML/CSS in Claude Code instead of the drag-and-drop
 canvas, then package and import it as a real draft site.
 
 This repo is a thin wrapper: a plugin marketplace manifest pointing at
-the two files that make up the skill itself, under `skills/webfactory-build/`
+the two files that make up the skill itself, under `skills/wavuti-studio-build/`
 (`SKILL.md` is the full authoring reference — markers, forms, sanitizer
 rules, verification tips; this README is the "I'm new, walk me through it"
 version).
@@ -21,7 +25,7 @@ A developer who:
 - has (or can get) an OmniScope account with `website-builder` permission for a
   team, but
 - does **not** have shell/SSH access to the app server, and
-- wants to design a Web Factory website faster than dragging blocks in the
+- wants to design a Wavuti Studio website faster than dragging blocks in the
   GrapesJS canvas.
 
 ## Prerequisites
@@ -41,21 +45,21 @@ Two ways to do this — pick one:
 
 **A. Claude Code plugin install (recommended, no clone needed):**
 ```
-/plugin marketplace add malipo-one/omniscope-webfactory-build-skill
-/plugin install webfactory-build@webfactory-build-skill
+/plugin marketplace add malipo-one/omniscope-wavuti-studio-build-skill
+/plugin install wavuti-studio-build@wavuti-studio-build-skill
 ```
 Run both inside any Claude Code session. This pulls the skill straight
 from GitHub and makes it available in every session on that machine.
 
 **B. Clone this repo and copy the two files by hand:**
 ```
-git clone git@github.com:malipo-one/omniscope-webfactory-build-skill.git
+git clone git@github.com:malipo-one/omniscope-wavuti-studio-build-skill.git
 ```
-Then copy `skills/webfactory-build/SKILL.md` and
-`skills/webfactory-build/assemble.php` into either:
-- `.claude/skills/webfactory-build/` inside whatever project you're
+Then copy `skills/wavuti-studio-build/SKILL.md` and
+`skills/wavuti-studio-build/assemble.php` into either:
+- `.claude/skills/wavuti-studio-build/` inside whatever project you're
   working from (scopes the skill to that project), or
-- `~/.claude/skills/webfactory-build/` (available in every project on
+- `~/.claude/skills/wavuti-studio-build/` (available in every project on
   your machine).
 
 Either path gets you the same two files — nothing else in this repo is
@@ -66,10 +70,10 @@ needed for building a site.
 Open Claude Code anywhere (a scratch folder is fine — it doesn't need to
 be inside any particular project) and just ask for what you want, e.g.:
 
-> "Build a Web Factory site for a restaurant called Kukuz — brand color
+> "Build a Wavuti Studio site for a restaurant called Kukuz — brand color
 > `#c0392b`, pages for Home, Menu, and Contact."
 
-Claude will pick up the `webfactory-build` skill automatically and:
+Claude will pick up the `wavuti-studio-build` skill automatically and:
 - ask follow-up questions about the business and each page's content
   rather than inventing details for a real client, and
 - confirm the exact **business type** name against the live dropdown at
@@ -82,7 +86,7 @@ Claude will pick up the `webfactory-build` skill automatically and:
 
 Claude authors a small directory like:
 ```
-webfactory-drafts/kukuz/
+wavuti-drafts/kukuz/
   site.json       # name, brand_color, website_type, ...
   pages.json      # one entry per page, exactly one is_home: true
   home.html  home.css
@@ -100,7 +104,7 @@ markers instead.
 ### 4. Assemble the export file
 
 ```
-php assemble.php webfactory-drafts/kukuz webfactory-drafts/kukuz.json
+php assemble.php wavuti-drafts/kukuz wavuti-drafts/kukuz.json
 ```
 (`assemble.php` is wherever you placed it in Step 1.) This validates
 `site.json`/`pages.json`, checks every referenced HTML/CSS file exists,
@@ -112,7 +116,7 @@ something's missing or malformed.
 ### 5. Import it through the browser (your access path — no SSH needed)
 
 1. Log into `https://omniscope.co.tz`.
-2. Go to **Web Factory → Import** (`/websites/import`).
+2. Go to **Wavuti Studio → Import** (`/websites/import`).
 3. Choose the `.json` file from Step 4, submit.
 4. On success you land directly on the new draft's editor page.
 
@@ -135,21 +139,21 @@ Open the new draft's GrapesJS editor, read through each page, tweak
 anything by hand (images, spacing, a card you want to reorder — all still
 fully editable in the normal canvas), and hit **Publish** yourself when
 it's ready. This skill never publishes for you, and a bad import can
-always be deleted from the Web Factory list and re-imported from scratch.
+always be deleted from the Wavuti Studio list and re-imported from scratch.
 
 ## Reference
 
 The full authoring reference — every `data-wbx-*` marker, the exact form
 field shapes for contact/newsletter/booking, sanitizer rules, and how to
 verify a build before importing — lives in
-[`skills/webfactory-build/SKILL.md`](skills/webfactory-build/SKILL.md).
+[`skills/wavuti-studio-build/SKILL.md`](skills/wavuti-studio-build/SKILL.md).
 Claude reads this automatically once the skill is installed; it's worth a
 skim yourself if you want to hand-edit a page's HTML directly instead of
 asking Claude to.
 
 ## Publishing an update to this skill (for maintainers)
 
-1. Update the files under `skills/webfactory-build/` (`SKILL.md`,
+1. Update the files under `skills/wavuti-studio-build/` (`SKILL.md`,
    `assemble.php`) with the change.
 2. Bump `version` in `.claude-plugin/marketplace.json`.
 3. Commit and push.

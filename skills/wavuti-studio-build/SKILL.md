@@ -1,11 +1,16 @@
 ---
-name: webfactory-build
-description: Author a team's Web Factory website (the /websites GrapesJS builder) by hand-writing HTML/CSS pages in Claude Code instead of dragging blocks in the canvas, then package and import them as a real draft website. Use when asked to build, design, or scaffold a WebFactory site, or to speed up website authoring for a team.
+name: wavuti-studio-build
+description: Author a team's Wavuti Studio website (formerly "Web Factory" — the /websites GrapesJS builder) by hand-writing HTML/CSS pages in Claude Code instead of dragging blocks in the canvas, then package and import them as a real draft website. Use when asked to build, design, or scaffold a Wavuti Studio site, or to speed up website authoring for a team. Also use when the user says "Web Factory" or "WebFactory" (the product's former name).
 ---
 
-# Building a Web Factory site in Claude Code
+# Building a Wavuti Studio site in Claude Code
 
-Web Factory (`/websites`, publicly `https://omniscope.co.tz`) is this
+> **Naming:** Wavuti Studio is the new name of what was called **Web Factory**. Until the OmniScope
+> app's own screens are renamed, the menu and page titles may still read "Web Factory" — same feature.
+> The import file's `"format": "webfactory-export"` is a technical identifier the app validates, so it is
+> deliberately **unchanged**; likewise the `website:import` command and the `/websites` URLs.
+
+Wavuti Studio (`/websites`, publicly `https://omniscope.co.tz`) is this
 app's GrapesJS-based site builder. Driving its block canvas by hand is the
 normal path for a non-technical team member, but it's slow going through
 Claude Code — hand-writing the HTML/CSS directly gets the same result
@@ -39,9 +44,9 @@ If you're a developer working from your own laptop against
 `https://omniscope.co.tz` rather than this repo/server directly, you
 still get the full skill — just copy these two files:
 
-- Into a project's `.claude/skills/webfactory-build/` to scope it to that
+- Into a project's `.claude/skills/wavuti-studio-build/` to scope it to that
   project, **or**
-- Into your user-level `~/.claude/skills/webfactory-build/` to have it in
+- Into your user-level `~/.claude/skills/wavuti-studio-build/` to have it in
   every Claude Code session on that machine, regardless of which project
   you're in.
 
@@ -51,7 +56,7 @@ login, no `.env`. Just a local `php` CLI (any reasonably recent PHP works;
 logged into `https://omniscope.co.tz` for the final import step.
 
 If you *do* have this repo cloned, the skill is already there — nothing to
-copy, it's committed at `.claude/skills/webfactory-build/`.
+copy, it's committed at `.claude/skills/wavuti-studio-build/`.
 
 ## Workflow
 
@@ -82,7 +87,7 @@ copy, it's committed at `.claude/skills/webfactory-build/`.
    you're authoring, since every page's content comes from your files, not
    the template.
 
-3. **Lay out a working directory**, e.g. `webfactory-drafts/<slug>/`
+3. **Lay out a working directory**, e.g. `wavuti-drafts/<slug>/`
    (anywhere on your machine — it doesn't need to be inside this repo):
    ```
    site.json
@@ -133,7 +138,7 @@ copy, it's committed at `.claude/skills/webfactory-build/`.
 
 5. **Assemble and sanity-check the JSON**:
    ```
-   php assemble.php webfactory-drafts/<slug> webfactory-drafts/<slug>.json
+   php assemble.php wavuti-drafts/<slug> wavuti-drafts/<slug>.json
    ```
    (path to `assemble.php` depends on where you placed the skill — see
    "Using this on a machine that isn't this server" above)
@@ -142,7 +147,7 @@ copy, it's committed at `.claude/skills/webfactory-build/`.
 
    **A. Browser import (works for anyone with an OmniScope login, no server access):**
    1. Log into `https://omniscope.co.tz`.
-   2. Go to `/websites/import` (or Web Factory → Import).
+   2. Go to `/websites/import` (or Wavuti Studio → Import).
    3. Choose the `.json` file `assemble.php` just wrote, submit.
    4. On success you land straight on the new draft's editor page — done.
       A failure here (invalid file / unknown type / no template) shows the
@@ -151,7 +156,7 @@ copy, it's committed at `.claude/skills/webfactory-build/`.
 
    **B. CLI import (only if you have shell access to the app server):**
    ```
-   php artisan website:import webfactory-drafts/<slug>.json --team=<team-slug>
+   php artisan website:import wavuti-drafts/<slug>.json --team=<team-slug>
    ```
    `--team` takes the team's **slug** (the same one in its OmniScope URLs), not a
    numeric id. Prints the new website's id and edit URL. Faster for anyone
@@ -176,7 +181,7 @@ copy, it's committed at `.claude/skills/webfactory-build/`.
 
    **B. CLI (server access):**
    ```
-   php artisan website:import webfactory-drafts/<slug>.json --team=<team-slug> --update=<website-slug>
+   php artisan website:import wavuti-drafts/<slug>.json --team=<team-slug> --update=<website-slug>
    ```
    `--prune-pages` is that command's equivalent of the browser form's
    checkbox.
@@ -270,7 +275,7 @@ like a foreign object next to canvas-built ones.
 No server access, so no dry-run transaction available to you — but the
 risk is already low without one: an import always lands as an unpublished
 **draft**, under whichever team's account did the import, and a bad draft
-can just be deleted from the Web Factory list and re-imported. Before
+can just be deleted from the Wavuti Studio list and re-imported. Before
 uploading, it's still worth:
 - Re-reading `assemble.php`'s own output — it reports the page count and
   errors out (with a specific reason) on a malformed `site.json`/`pages.json`
@@ -287,7 +292,7 @@ well-formed with zero risk at all:
 php artisan tinker --execute="
 DB::beginTransaction();
 try {
-    \$code = Artisan::call('website:import', ['file' => 'webfactory-drafts/<slug>.json', '--team' => '<team-slug>']);
+    \$code = Artisan::call('website:import', ['file' => 'wavuti-drafts/<slug>.json', '--team' => '<team-slug>']);
     echo Artisan::output();
 } finally {
     DB::rollBack();
@@ -298,14 +303,14 @@ try {
 ## Making this available to other developers
 
 - **If they have this repo cloned**: nothing to do — it's committed at
-  `.claude/skills/webfactory-build/`, so opening the project in any Claude
+  `.claude/skills/wavuti-studio-build/`, so opening the project in any Claude
   Code surface picks it up automatically and stays in sync with the app's
   schema as both evolve together.
 - **If they only work against `https://omniscope.co.tz`** (most
   developers, per the team's own setup — no server/artisan access): send
   them just the two files in this folder (`SKILL.md` + `assemble.php`) to
-  drop into their own `.claude/skills/webfactory-build/` or
-  `~/.claude/skills/webfactory-build/` — see "Using this on a machine
+  drop into their own `.claude/skills/wavuti-studio-build/` or
+  `~/.claude/skills/wavuti-studio-build/` — see "Using this on a machine
   that isn't this server" above. Nothing else from the repo is needed, and
   the browser-import path (step 6A) is the one they'll use.
 - `php artisan website:import` is a normal Artisan command
