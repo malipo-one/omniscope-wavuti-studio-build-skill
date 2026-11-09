@@ -5,9 +5,8 @@ description: Author a team's Wavuti Studio website (formerly "Web Factory" — t
 
 # Building a Wavuti Studio site in Claude Code
 
-> **Naming:** Wavuti Studio is the new name of what was called **Web Factory**. Until the OmniScope
-> app's own screens are renamed, the menu and page titles may still read "Web Factory" — same feature.
-> The import file's `"format": "webfactory-export"` is a technical identifier the app validates, so it is
+> **Naming:** Wavuti Studio is the new name of what was called **Web Factory** (the app's menus and pages now
+> say Wavuti Studio; the old `/web-factory` URLs redirect to `/wavuti-studio`). The import file's `"format": "webfactory-export"` is a technical identifier the app validates, so it is
 > deliberately **unchanged**; likewise the `website:import` command and the `/websites` URLs.
 
 Wavuti Studio (`/websites`, publicly `https://omniscope.co.tz`) is this

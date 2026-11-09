@@ -1,8 +1,8 @@
 # wavuti-studio-build (Claude Code plugin marketplace)
 
 > **Wavuti Studio** is the new name of **Web Factory**. The skill was renamed from `webfactory-build`;
-> reinstall with the commands in Step 1A. The OmniScope app's own screens may still say "Web Factory" until
-> they are renamed — it is the same feature. (The repository keeps its old name for now.)
+> reinstall with the commands in Step 1A. The OmniScope app's menus and pages now say Wavuti Studio, and the
+> old `/web-factory` URLs redirect to `/wavuti-studio`. (The repository keeps its old name for now.)
 
 Public, self-serve distribution for the `wavuti-studio-build` Claude Code
 skill — lets any developer author a [OmniScope Wavuti Studio](https://omniscope.co.tz/websites)
