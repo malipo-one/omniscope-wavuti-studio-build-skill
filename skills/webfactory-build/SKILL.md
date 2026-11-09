@@ -5,7 +5,7 @@ description: Author a team's Web Factory website (the /websites GrapesJS builder
 
 # Building a Web Factory site in Claude Code
 
-Web Factory (`/websites`, publicly `https://360.bridging.co.tz`) is this
+Web Factory (`/websites`, publicly `https://omniscope.co.tz`) is this
 app's GrapesJS-based site builder. Driving its block canvas by hand is the
 normal path for a non-technical team member, but it's slow going through
 Claude Code — hand-writing the HTML/CSS directly gets the same result
@@ -20,7 +20,7 @@ publish.
 **No server access required.** `assemble.php` is a standalone PHP script —
 no Laravel, no `.env`, no database, no `vendor/` install. Everything up to
 "you have a JSON file" runs on any machine with a plain `php` CLI. Getting
-that file *into* 360 then just needs a browser and a 360 login — see
+that file *into* OmniScope then just needs a browser and an OmniScope login — see
 "Importing the file" below. A separate, faster path exists for anyone who
 does have shell access to the app server, but it's optional.
 
@@ -36,7 +36,7 @@ does have shell access to the app server, but it's optional.
 ## Using this on a machine that isn't this server
 
 If you're a developer working from your own laptop against
-`https://360.bridging.co.tz` rather than this repo/server directly, you
+`https://omniscope.co.tz` rather than this repo/server directly, you
 still get the full skill — just copy these two files:
 
 - Into a project's `.claude/skills/webfactory-build/` to scope it to that
@@ -48,7 +48,7 @@ still get the full skill — just copy these two files:
 Either way, you need nothing else from this repo — no clone, no server
 login, no `.env`. Just a local `php` CLI (any reasonably recent PHP works;
 `assemble.php` has zero external dependencies) and a browser session
-logged into `https://360.bridging.co.tz` for the final import step.
+logged into `https://omniscope.co.tz` for the final import step.
 
 If you *do* have this repo cloned, the skill is already there — nothing to
 copy, it's committed at `.claude/skills/webfactory-build/`.
@@ -60,10 +60,10 @@ copy, it's committed at `.claude/skills/webfactory-build/`.
    inventing content for a real client site.
 
 2. **Confirm the business type name.** `website_type` in `site.json` must
-   match one of 360's business-type names *exactly*, or the import fails
+   match one of OmniScope's business-type names *exactly*, or the import fails
    with "Unknown website type" (in the browser, or on the CLI). Two ways
    to check, no server access needed for either:
-   - Log into `https://360.bridging.co.tz`, open `/websites/create`, and
+   - Log into `https://omniscope.co.tz`, open `/websites/create`, and
      read the options in the "Business Type" dropdown — this is always
      current, since it's the live list.
    - As of 2026-09-04 the list was: **Restaurant & Food Service, Retail &
@@ -140,8 +140,8 @@ copy, it's committed at `.claude/skills/webfactory-build/`.
 
 6. **Import it — pick whichever path matches your access:**
 
-   **A. Browser import (works for anyone with a 360 login, no server access):**
-   1. Log into `https://360.bridging.co.tz`.
+   **A. Browser import (works for anyone with an OmniScope login, no server access):**
+   1. Log into `https://omniscope.co.tz`.
    2. Go to `/websites/import` (or Web Factory → Import).
    3. Choose the `.json` file `assemble.php` just wrote, submit.
    4. On success you land straight on the new draft's editor page — done.
@@ -153,7 +153,7 @@ copy, it's committed at `.claude/skills/webfactory-build/`.
    ```
    php artisan website:import webfactory-drafts/<slug>.json --team=<team-slug>
    ```
-   `--team` takes the team's **slug** (the same one in its 360 URLs), not a
+   `--team` takes the team's **slug** (the same one in its OmniScope URLs), not a
    numeric id. Prints the new website's id and edit URL. Faster for anyone
    already on the server (e.g. scripting several imports at once), but not
    required — path A does exactly the same thing through the browser.
@@ -301,7 +301,7 @@ try {
   `.claude/skills/webfactory-build/`, so opening the project in any Claude
   Code surface picks it up automatically and stays in sync with the app's
   schema as both evolve together.
-- **If they only work against `https://360.bridging.co.tz`** (most
+- **If they only work against `https://omniscope.co.tz`** (most
   developers, per the team's own setup — no server/artisan access): send
   them just the two files in this folder (`SKILL.md` + `assemble.php`) to
   drop into their own `.claude/skills/webfactory-build/` or

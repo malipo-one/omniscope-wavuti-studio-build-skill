@@ -1,7 +1,7 @@
 # webfactory-build (Claude Code plugin marketplace)
 
 Public, self-serve distribution for the `webfactory-build` Claude Code
-skill — lets any developer author a [360 Web Factory](https://360.bridging.co.tz/websites)
+skill — lets any developer author a [OmniScope Web Factory](https://omniscope.co.tz/websites)
 website as plain HTML/CSS in Claude Code instead of the drag-and-drop
 canvas, then package and import it as a real draft site.
 
@@ -11,14 +11,14 @@ the two files that make up the skill itself, under `skills/webfactory-build/`
 rules, verification tips; this README is the "I'm new, walk me through it"
 version).
 
-**No SSH, `.env`, or server login to the 360 app server is required for any
+**No SSH, `.env`, or server login to the OmniScope app server is required for any
 of this.** Everything below runs from your own laptop plus a normal browser
-login to `https://360.bridging.co.tz`.
+login to `https://omniscope.co.tz`.
 
 ## Who this is for
 
 A developer who:
-- has (or can get) a 360 account with `website-builder` permission for a
+- has (or can get) an OmniScope account with `website-builder` permission for a
   team, but
 - does **not** have shell/SSH access to the app server, and
 - wants to design a Web Factory website faster than dragging blocks in the
@@ -30,7 +30,7 @@ A developer who:
 - A `php` CLI on your own machine (any reasonably recent version). It only
   runs one standalone script with zero dependencies — no Laravel, no
   Composer install, no database.
-- A 360 login at `https://360.bridging.co.tz` with `website-builder`
+- An OmniScope login at `https://omniscope.co.tz` with `website-builder`
   permission for whichever team you're building the site for.
 
 ## Step-by-step
@@ -41,7 +41,7 @@ Two ways to do this — pick one:
 
 **A. Claude Code plugin install (recommended, no clone needed):**
 ```
-/plugin marketplace add bridging-technologies/360-webfactory-build-skill
+/plugin marketplace add malipo-one/omniscope-webfactory-build-skill
 /plugin install webfactory-build@webfactory-build-skill
 ```
 Run both inside any Claude Code session. This pulls the skill straight
@@ -49,7 +49,7 @@ from GitHub and makes it available in every session on that machine.
 
 **B. Clone this repo and copy the two files by hand:**
 ```
-git clone git@github.com:bridging-technologies/360-webfactory-build-skill.git
+git clone git@github.com:malipo-one/omniscope-webfactory-build-skill.git
 ```
 Then copy `skills/webfactory-build/SKILL.md` and
 `skills/webfactory-build/assemble.php` into either:
@@ -73,7 +73,7 @@ Claude will pick up the `webfactory-build` skill automatically and:
 - ask follow-up questions about the business and each page's content
   rather than inventing details for a real client, and
 - confirm the exact **business type** name against the live dropdown at
-  `https://360.bridging.co.tz/websites/create` (this has to match a real
+  `https://omniscope.co.tz/websites/create` (this has to match a real
   `website_types` row exactly, e.g. "Restaurant & Food Service", "Retail &
   Shop", "Professional Services" — it'll check the live list rather than
   guess).
@@ -111,7 +111,7 @@ something's missing or malformed.
 
 ### 5. Import it through the browser (your access path — no SSH needed)
 
-1. Log into `https://360.bridging.co.tz`.
+1. Log into `https://omniscope.co.tz`.
 2. Go to **Web Factory → Import** (`/websites/import`).
 3. Choose the `.json` file from Step 4, submit.
 4. On success you land directly on the new draft's editor page.

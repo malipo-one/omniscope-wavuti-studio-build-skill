@@ -8,7 +8,7 @@
     {
       "name": "webfactory-build",
       "source": "./skills/webfactory-build",
-      "description": "Author a 360 Web Factory website as plain HTML/CSS in Claude Code instead of the drag-and-drop canvas.",
+      "description": "Author an OmniScope Web Factory website as plain HTML/CSS in Claude Code instead of the drag-and-drop canvas.",
       "version": "1.0.0"
     }
   ]
